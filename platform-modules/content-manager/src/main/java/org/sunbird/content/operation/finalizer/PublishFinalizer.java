@@ -557,7 +557,9 @@ public class PublishFinalizer extends BaseFinalizer {
 								collectionHierarchy.put(ContentWorkflowPipelineParams.parent.name(), child.get(ContentWorkflowPipelineParams.parent.name()));
 								List<String> childNodes = getList(collectionHierarchy.get(ContentWorkflowPipelineParams.childNodes.name()));
 								if (!CollectionUtils.isEmpty(childNodes)  && INCLUDE_CHILDNODE_OBJECTS.contains((String) child.get("objectType")))
-									collectionResourceChildNodes.addAll(childNodes);
+									{
+									    collectionResourceChildNodes.addAll(childNodes);
+									}
 
 									children.remove(child);
 									children.add(collectionHierarchy);
@@ -1488,7 +1490,9 @@ public class PublishFinalizer extends BaseFinalizer {
     private void getLeafNodesIds(Map<String, Object> data, Set<String> leafNodeIds) {
 	    if (INCLUDE_LEAFNODE_OBJECTS.contains(data.get(ContentAPIParams.objectType.name())) &&
 				StringUtils.equalsIgnoreCase((String) data.get(ContentWorkflowPipelineParams.visibility.name()), "Default"))
-		    leafNodeIds.add((String) data.get(ContentAPIParams.identifier.name()));
+		    {
+		        leafNodeIds.add((String) data.get(ContentAPIParams.identifier.name()));
+		    }
         List<Map<String,Object>> children = (List<Map<String,Object>>)data.get("children");
         if(CollectionUtils.isNotEmpty(children)) {
             for(Map<String, Object> child : children) {
